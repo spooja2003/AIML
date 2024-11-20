@@ -1,0 +1,47 @@
+%matplotlib inline
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+x=np.array([1,2,3,4,5])
+x
+
+y=np.array([4,2,1,3,7])
+
+plt.scatter(x,y);
+
+from sklearn.linear_model import LinearRegression
+
+X=x[:,np.newaxis]
+
+X
+
+model=LinearRegression().fit(X,y)
+
+model
+
+yfit=model.predict(X)
+
+yfit
+
+plt.scatter(X,y)
+plt.plot(X,yfit);
+
+from sklearn.preprocessing import PolynomialFeatures
+
+poly = PolynomialFeatures(degree=3, include_bias=False)
+
+X2 = poly.fit_transform(X)
+
+print(X2)
+
+#adjusting the linear regression close to the data points
+model=LinearRegression().fit(X2,y)
+
+yfit=model.predict(X2)
+
+yfit
+
+plt.scatter(X,y)
+plt.plot(X,yfit);
