@@ -1,0 +1,45 @@
+import matplotlib.pyplot as plt
+
+data=[
+    {'price':850000,'rooms':4,'neighborhood':'Queen Anne'},
+    {'price':750000,'rooms':3,'neighborhood':' Farmount'},
+    {'price':650000,'rooms':2,'neighborhood':'Wallingford'},
+    {'price':550000,'rooms':1,'neighborhood':'Fremont'}
+]
+
+print(data)
+
+from sklearn.feature_extraction import DictVectorizer
+
+vec=DictVectorizer(sparse=False, dtype=int)
+
+vec.fit_transform(data)
+
+vec.get_feature_names_out()
+
+vec=DictVectorizer(sparse=True,dtype=int)
+vec.fit_transform(data)
+
+sample=['problem of evil','evil queen','horizon problem']
+
+sample
+
+from sklearn.feature_extraction.text import CountVectorizer
+
+vec= CountVectorizer()
+
+X= vec.fit_transform(sample)
+
+X
+
+import pandas as pd
+
+pd.DataFrame(X.toarray(),columns=vec.get_feature_names_out())
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+vec= TfidfVectorizer()
+
+X=vec.fit_transform(sample)
+
+pd.DataFrame(X.toarray(),columns=vec.get_feature_names_out())
